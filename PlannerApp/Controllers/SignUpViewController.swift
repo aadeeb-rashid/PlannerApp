@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordText: UITextField!
     var success: Bool = false
     override func viewDidLoad() {
+        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

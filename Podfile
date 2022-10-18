@@ -9,5 +9,6 @@ target 'PlannerApp' do
   pod 'FirebaseAnalytics'
   pod 'FirebaseAuth'
   pod 'FirebaseDatabase'
+  pod 'FirebaseStorage'
   #pod 'FirebaseCrashlytics'
 end

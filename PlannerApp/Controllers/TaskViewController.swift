@@ -13,8 +13,8 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var results: UILabel!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
+        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
         tableView.reloadData()
-        print(UserData.taskList)
         
         super.viewDidLoad()
         getWeather()
@@ -55,14 +55,15 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        UserData.taskList.count
+        AppDelegate.sharedManagers()?.userManager.getTasks().count ?? 0
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as? TaskTableViewCell {
             
-            let task: Task = UserData.taskList[indexPath.row]
+            let taskList :[Task] = AppDelegate.sharedManagers()?.userManager.getTasks() ?? []
+            let task: Task = taskList[indexPath.row]
             cell.catLabel.text = "CATEGORY:" + task.cat.name!
             cell.taskLabel.text = "TASK:" +  task.name!
             cell.img.image = task.img

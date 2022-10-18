@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0C1C10AE64DBA83B880569C2 /* Pods_PlannerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD0BFCFFB53EE47B91FD1E92 /* Pods_PlannerApp.framework */; };
 		5B239A182814D071007DD468 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B239A172814D070007DD468 /* Model.swift */; };
-		5B84B8082813423C00CA53CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B84B8072813423C00CA53CB /* GoogleService-Info.plist */; };
+		5B5175F328FE66FB00269828 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5175F228FE66FB00269828 /* NetworkManager.swift */; };
+		5B5175F528FE71AD00269828 /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5175F428FE71AD00269828 /* CustomErrors.swift */; };
+		5B5175F728FE97EC00269828 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5175F628FE97EC00269828 /* GoogleService-Info.plist */; };
 		5B84B80F2813471800CA53CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B80E2813471800CA53CB /* LoginViewController.swift */; };
 		5B84B8112813472C00CA53CB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B8102813472C00CA53CB /* SignUpViewController.swift */; };
 		5B84B813281352BF00CA53CB /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B812281352BF00CA53CB /* TaskViewController.swift */; };
@@ -18,6 +20,9 @@
 		5B84B81D28136E5C00CA53CB /* AddCatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B81C28136E5C00CA53CB /* AddCatViewController.swift */; };
 		5B84B8212813BAB000CA53CB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B8202813BAB000CA53CB /* MapViewController.swift */; };
 		5B84B8232813D77600CA53CB /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B8222813D77500CA53CB /* APIStruct.swift */; };
+		5BEF823E28D2F6C400510FA9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF823D28D2F6C400510FA9 /* UserManager.swift */; };
+		5BEF824028D3057800510FA9 /* ManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF823F28D3057800510FA9 /* ManagerFactory.swift */; };
+		5BEF824228D30C8A00510FA9 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF824128D30C8A00510FA9 /* ErrorManager.swift */; };
 		5BF0063527E845FF00F35909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0063427E845FF00F35909 /* AppDelegate.swift */; };
 		5BF0063727E845FF00F35909 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0063627E845FF00F35909 /* SceneDelegate.swift */; };
 		5BF0063927E845FF00F35909 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0063827E845FF00F35909 /* ViewController.swift */; };
@@ -30,7 +35,9 @@
 /* Begin PBXFileReference section */
 		43313A980D76E3376F6C5885 /* Pods-PlannerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannerApp.release.xcconfig"; path = "Target Support Files/Pods-PlannerApp/Pods-PlannerApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B239A172814D070007DD468 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		5B84B8072813423C00CA53CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B5175F228FE66FB00269828 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5B5175F428FE71AD00269828 /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
+		5B5175F628FE97EC00269828 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B84B80E2813471800CA53CB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5B84B8102813472C00CA53CB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5B84B812281352BF00CA53CB /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +46,9 @@
 		5B84B81C28136E5C00CA53CB /* AddCatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatViewController.swift; sourceTree = "<group>"; };
 		5B84B8202813BAB000CA53CB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5B84B8222813D77500CA53CB /* APIStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStruct.swift; sourceTree = "<group>"; };
+		5BEF823D28D2F6C400510FA9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		5BEF823F28D3057800510FA9 /* ManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerFactory.swift; sourceTree = "<group>"; };
+		5BEF824128D30C8A00510FA9 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		5BF0063127E845FF00F35909 /* PlannerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlannerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF0063427E845FF00F35909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BF0063627E845FF00F35909 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +79,7 @@
 			children = (
 				5B239A172814D070007DD468 /* Model.swift */,
 				5B84B8222813D77500CA53CB /* APIStruct.swift */,
+				5B5175F428FE71AD00269828 /* CustomErrors.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -86,6 +97,17 @@
 				5B84B8202813BAB000CA53CB /* MapViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5BEF823C28D2F6A600510FA9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF823D28D2F6C400510FA9 /* UserManager.swift */,
+				5BEF824128D30C8A00510FA9 /* ErrorManager.swift */,
+				5B5175F228FE66FB00269828 /* NetworkManager.swift */,
+				5BEF823F28D3057800510FA9 /* ManagerFactory.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		5BF0062827E845FE00F35909 = {
@@ -110,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				5B84B8172813605E00CA53CB /* Controllers */,
+				5BEF823C28D2F6A600510FA9 /* Managers */,
 				5B84B8162813605000CA53CB /* Model */,
 				5BF0063427E845FF00F35909 /* AppDelegate.swift */,
 				5BF0063627E845FF00F35909 /* SceneDelegate.swift */,
@@ -118,7 +141,7 @@
 				5BF0064227E845FF00F35909 /* LaunchScreen.storyboard */,
 				5BF0064527E845FF00F35909 /* Info.plist */,
 				5BF0063D27E845FF00F35909 /* PlannerApp.xcdatamodeld */,
-				5B84B8072813423C00CA53CB /* GoogleService-Info.plist */,
+				5B5175F628FE97EC00269828 /* GoogleService-Info.plist */,
 			);
 			path = PlannerApp;
 			sourceTree = "<group>";
@@ -129,7 +152,6 @@
 				7EDF764748A2CE16E2FB2C79 /* Pods-PlannerApp.debug.xcconfig */,
 				43313A980D76E3376F6C5885 /* Pods-PlannerApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -202,7 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF0064427E845FF00F35909 /* LaunchScreen.storyboard in Resources */,
-				5B84B8082813423C00CA53CB /* GoogleService-Info.plist in Resources */,
+				5B5175F728FE97EC00269828 /* GoogleService-Info.plist in Resources */,
 				5BF0064127E845FF00F35909 /* Assets.xcassets in Resources */,
 				5BF0063C27E845FF00F35909 /* Main.storyboard in Resources */,
 			);
@@ -258,12 +280,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B84B8112813472C00CA53CB /* SignUpViewController.swift in Sources */,
+				5B5175F528FE71AD00269828 /* CustomErrors.swift in Sources */,
 				5B84B813281352BF00CA53CB /* TaskViewController.swift in Sources */,
+				5BEF824228D30C8A00510FA9 /* ErrorManager.swift in Sources */,
+				5BEF823E28D2F6C400510FA9 /* UserManager.swift in Sources */,
 				5B84B819281361F100CA53CB /* TaskTableViewCell.swift in Sources */,
 				5B84B81D28136E5C00CA53CB /* AddCatViewController.swift in Sources */,
 				5BF0063F27E845FF00F35909 /* PlannerApp.xcdatamodeld in Sources */,
 				5BF0063927E845FF00F35909 /* ViewController.swift in Sources */,
 				5BF0063527E845FF00F35909 /* AppDelegate.swift in Sources */,
+				5BEF824028D3057800510FA9 /* ManagerFactory.swift in Sources */,
+				5B5175F328FE66FB00269828 /* NetworkManager.swift in Sources */,
 				5B239A182814D071007DD468 /* Model.swift in Sources */,
 				5B84B8212813BAB000CA53CB /* MapViewController.swift in Sources */,
 				5B84B8232813D77600CA53CB /* APIStruct.swift in Sources */,
@@ -419,8 +446,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FKFJL556XS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlannerApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Application wants to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application wants to use your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -431,7 +461,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ASU.PlannerApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BlueArrow.PlannerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -447,8 +477,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FKFJL556XS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlannerApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Application wants to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application wants to use your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -459,7 +492,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ASU.PlannerApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BlueArrow.PlannerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

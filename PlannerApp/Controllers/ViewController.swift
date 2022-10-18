@@ -17,3 +17,8 @@ class ViewController: UIViewController {
 
 }
 
+extension UIViewController : PresentAlertDelegate
+{
+    
+}
+

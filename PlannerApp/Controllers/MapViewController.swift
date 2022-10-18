@@ -16,6 +16,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var latText: UITextField!
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
+        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
         super.viewDidLoad()
         
         locationManager.requestWhenInUseAuthorization()

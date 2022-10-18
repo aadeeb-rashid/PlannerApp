@@ -13,6 +13,7 @@ class AddCatViewController: UIViewController {
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var descText: UITextView!
     override func viewDidLoad() {
+        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -38,8 +39,8 @@ class AddCatViewController: UIViewController {
         
         if(segue.identifier == "addUnwind")
         {
-            UserData.catList.append(Category(cName: nameText.text!, cDesc: descText.text!))
-            UserData.ref.child("users/\(UserData.userID)/Categories/\(nameText.text!)").setValue(descText.text!)
+            AppDelegate.sharedManagers()?.userManager.addCategory(category: Category(cName: nameText.text!, cDesc: descText.text!))
+
         }
     }
 }

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1086184884910-s79purh6sjmadoc1q2vvhqgdo4qa1viu.apps.googleusercontent.com</string>
+	<string>738054955670-d6spsh2ciqt2189sfb6lettge908m16q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1086184884910-s79purh6sjmadoc1q2vvhqgdo4qa1viu</string>
+	<string>com.googleusercontent.apps.738054955670-d6spsh2ciqt2189sfb6lettge908m16q</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDizihvDeHhTqQcZbpMCrnVzeHbh5Mloqg</string>
+	<string>AIzaSyBwbOzhWjUlGTnyBSY3sv1JH6lBwf9R45g</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1086184884910</string>
+	<string>738054955670</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>ASU.PlannerApp</string>
+	<string>com.BlueArrow.PlannerApp</string>
 	<key>PROJECT_ID</key>
-	<string>planner-6b8ee</string>
+	<string>planningapp-d4bb4</string>
 	<key>STORAGE_BUCKET</key>
-	<string>planner-6b8ee.appspot.com</string>
+	<string>planningapp-d4bb4.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1086184884910:ios:ad2cec9e12ee7ad391fb3f</string>
+	<string>1:738054955670:ios:8e76ea2280d137177318b7</string>
 </dict>
 </plist>

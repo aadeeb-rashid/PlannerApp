@@ -7,14 +7,29 @@
 
 import UIKit
 import CoreData
-import Firebase
+import FirebaseCore
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var managers: ManagerFactory?
+    static var sharedDelegate: AppDelegate!
+    
+    override init() {
+        super.init()
+        AppDelegate.sharedDelegate = self
+    }
 
+    static func sharedAppDelegate() -> AppDelegate {
+        return AppDelegate.sharedDelegate
+    }
 
-
+    static func sharedManagers() -> ManagerFactory? {
+        return sharedAppDelegate().managers
+    }
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customization after application launch
         FirebaseApp.configure()
         return true
     }

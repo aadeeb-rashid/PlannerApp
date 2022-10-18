@@ -41,11 +41,3 @@ class Task
     }
 }
 
-public struct UserData
-{
-    static var ref : DatabaseReference = Database.database(url: "https://planner-6b8ee-default-rtdb.firebaseio.com/").reference()
-    static var userID: String = ""
-    static var catList: [Category] = []
-    static var taskList: [Task] = []
-    static var storage = Storage.storage().reference()
-}

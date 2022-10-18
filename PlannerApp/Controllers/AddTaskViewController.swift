@@ -19,6 +19,7 @@ class AddTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var long: Float? = nil
     var lat: Float? = nil
     override func viewDidLoad() {
+        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
         super.viewDidLoad()
 
     }

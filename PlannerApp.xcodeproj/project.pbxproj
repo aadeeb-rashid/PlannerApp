@@ -18,8 +18,6 @@
 		5B84B819281361F100CA53CB /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B818281361F100CA53CB /* TaskTableViewCell.swift */; };
 		5B84B81B28136E4D00CA53CB /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B81A28136E4D00CA53CB /* AddTaskViewController.swift */; };
 		5B84B81D28136E5C00CA53CB /* AddCatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B81C28136E5C00CA53CB /* AddCatViewController.swift */; };
-		5B84B8212813BAB000CA53CB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B8202813BAB000CA53CB /* MapViewController.swift */; };
-		5B84B8232813D77600CA53CB /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84B8222813D77500CA53CB /* APIStruct.swift */; };
 		5BEF823E28D2F6C400510FA9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF823D28D2F6C400510FA9 /* UserManager.swift */; };
 		5BEF824028D3057800510FA9 /* ManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF823F28D3057800510FA9 /* ManagerFactory.swift */; };
 		5BEF824228D30C8A00510FA9 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF824128D30C8A00510FA9 /* ErrorManager.swift */; };
@@ -44,8 +42,6 @@
 		5B84B818281361F100CA53CB /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		5B84B81A28136E4D00CA53CB /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		5B84B81C28136E5C00CA53CB /* AddCatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatViewController.swift; sourceTree = "<group>"; };
-		5B84B8202813BAB000CA53CB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		5B84B8222813D77500CA53CB /* APIStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStruct.swift; sourceTree = "<group>"; };
 		5BEF823D28D2F6C400510FA9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5BEF823F28D3057800510FA9 /* ManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerFactory.swift; sourceTree = "<group>"; };
 		5BEF824128D30C8A00510FA9 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
@@ -78,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				5B239A172814D070007DD468 /* Model.swift */,
-				5B84B8222813D77500CA53CB /* APIStruct.swift */,
 				5B5175F428FE71AD00269828 /* CustomErrors.swift */,
 			);
 			path = Model;
@@ -94,7 +89,6 @@
 				5B84B818281361F100CA53CB /* TaskTableViewCell.swift */,
 				5B84B81A28136E4D00CA53CB /* AddTaskViewController.swift */,
 				5B84B81C28136E5C00CA53CB /* AddCatViewController.swift */,
-				5B84B8202813BAB000CA53CB /* MapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -292,8 +286,6 @@
 				5BEF824028D3057800510FA9 /* ManagerFactory.swift in Sources */,
 				5B5175F328FE66FB00269828 /* NetworkManager.swift in Sources */,
 				5B239A182814D071007DD468 /* Model.swift in Sources */,
-				5B84B8212813BAB000CA53CB /* MapViewController.swift in Sources */,
-				5B84B8232813D77600CA53CB /* APIStruct.swift in Sources */,
 				5B84B80F2813471800CA53CB /* LoginViewController.swift in Sources */,
 				5BF0063727E845FF00F35909 /* SceneDelegate.swift in Sources */,
 				5B84B81B28136E4D00CA53CB /* AddTaskViewController.swift in Sources */,
@@ -444,6 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FKFJL556XS;
@@ -463,6 +456,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BlueArrow.PlannerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -475,6 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FKFJL556XS;
@@ -494,6 +489,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BlueArrow.PlannerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

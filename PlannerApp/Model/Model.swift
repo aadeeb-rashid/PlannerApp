@@ -27,17 +27,13 @@ class Task
     var name: String?
     var desc: String?
     var img: UIImage?
-    var long: Float?
-    var lat: Float?
     
-    init(cName: String, cDesc: String, c: Category, cImg: UIImage?, cLong: Float?, cLat: Float?)
+    init(cName: String, cDesc: String, c: Category, cImg: UIImage?)
     {
         name = cName
         desc = cDesc
         cat = c
         img = cImg
-        long = cLong
-        lat = cLat
     }
 }
 

@@ -23,6 +23,15 @@ class ErrorManager: Manager
         delegate = viewController
     }
     
+    func handlePotentialError(error: Error?, completionHandler: @escaping ([Category], [Task]) -> Void)
+    {
+        if let error = error
+        {
+            self.handleError(error: error)
+            completionHandler([], [])
+        }
+    }
+    
     func handleError(error: Error)
     {
         DispatchQueue.main.async

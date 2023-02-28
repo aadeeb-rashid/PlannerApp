@@ -6,15 +6,15 @@
 //
 
 import Foundation
-enum FirebaseError: LocalizedError {
-    // Throw when DataFetch From Firebase Fails for UserData
+enum FirebaseError: LocalizedError
+{
     case userDataFetchFailed
-    
-    //Throw when One Task Is Corrupt
     case corruptTask
     
-    public var errorDescription: String? {
-            switch self {
+    public var errorDescription: String?
+    {
+        switch self
+        {
             case .userDataFetchFailed:
                 return NSLocalizedString(
                     "User Data is not available at this time.",
@@ -29,4 +29,22 @@ enum FirebaseError: LocalizedError {
             }
         }
     
+}
+
+enum CreateError : LocalizedError
+{
+    case FillOutAllFields
+    case NoCategory
+    
+    public var errorDescription: String?
+    {
+        switch self
+        {
+            case .FillOutAllFields:
+                return NSLocalizedString("Please fill out all fields", comment: "Fields Error")
+            
+            case .NoCategory:
+                return NSLocalizedString("Please add a Category", comment: "Fields Error")
+        }
+    }
 }

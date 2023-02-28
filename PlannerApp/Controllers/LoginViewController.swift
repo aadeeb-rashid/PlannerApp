@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController
+class LoginViewController: UIViewController, AuthDelegate
 {
 
     @IBOutlet weak var emailText: UITextField!
@@ -16,15 +16,25 @@ class LoginViewController: UIViewController
     override func viewDidLoad()
     {
         AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
+        AppDelegate.sharedManagers()?.userManager.setAuthDelegate(delegate: self)
         super.viewDidLoad()
     }
 
-    @IBAction func loginAttempt(_ sender: UIButton) {
-        AppDelegate.sharedManagers()?.userManager.loginUser(email: emailText.text!, password: passwordText.text!)
+    @IBAction func loginAttempt(_ sender: UIButton)
+    {
+        AppDelegate.sharedManagers()?.userManager.loginUserWithAuth(email: emailText.text ?? "", password: passwordText.text ?? "")
+    }
+    
+    func segueToMain()
+    {
+        self.performSegue(withIdentifier: "loginSegue", sender: self)
+        AppDelegate.sharedManagers()?.userManager.setAuthDelegate(delegate: nil)
     }
     
     @IBAction func unwindToLoginPage(segue:UIStoryboardSegue)
     {
         
     }
+    
+    
 }

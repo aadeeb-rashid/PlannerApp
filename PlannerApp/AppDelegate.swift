@@ -11,7 +11,7 @@ import FirebaseCore
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var managers: ManagerFactory?
+    var managers: ManagerFactory? = ManagerFactory()
     static var sharedDelegate: AppDelegate!
     
     override init()

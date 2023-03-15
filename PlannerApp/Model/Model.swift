@@ -11,8 +11,8 @@ import FirebaseDatabase
 import FirebaseStorage
 class Category
 {
-    var name: String?
-    var desc: String?
+    var name: String
+    var desc: String
     
     init(cName: String, cDesc: String)
     {
@@ -24,16 +24,31 @@ class Category
 class Task
 {
     var cat : Category
-    var name: String?
-    var desc: String?
+    var name: String
+    var desc: String
+    var hasImage : Bool
     var img: UIImage?
     
-    init(cName: String, cDesc: String, c: Category, cImg: UIImage?)
+    init(cName: String, cDesc: String, c: Category, hasImage: Bool, img : UIImage? = nil)
     {
-        name = cName
-        desc = cDesc
-        cat = c
-        img = cImg
+        self.name = cName
+        self.desc = cDesc
+        self.cat = c
+        self.hasImage = hasImage
+        self.img = img
+        if(!hasImage || img != nil)
+        {
+            return
+        }
+        AppDelegate.sharedManagers()?.networkManager.obtainImage(taskName: name, completionHandler: self.setImage(image:))
+        
+    }
+    
+    
+    
+    private func setImage(image: UIImage?)
+    {
+        self.img = image
     }
 }
 

@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:738054955670:ios:8e76ea2280d137177318b7</string>
+	<key>DATABASE_URL</key>
+	<string>https://planningapp-d4bb4-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

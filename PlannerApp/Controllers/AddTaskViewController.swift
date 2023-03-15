@@ -19,7 +19,7 @@ class AddTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var img: UIImage? = nil
     override func viewDidLoad()
     {
-        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
+        self.prepViewController()
         super.viewDidLoad()
     }
     

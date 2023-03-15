@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
@@ -14,7 +13,7 @@ import UIKit
 class NetworkManager: Manager
 {
     //Make This a User Defined Setting at One Point or Check If it is the Default like StorageRef
-    private let databaseRef : DatabaseReference = Database.database(url: "https://planner-6b8ee-default-rtdb.firebaseio.com/").reference()
+    private let databaseRef : DatabaseReference = Database.database(url: "https://planningapp-d4bb4-default-rtdb.firebaseio.com/").reference()
     private let storageRef:StorageReference = Storage.storage().reference()
     
     
@@ -30,7 +29,7 @@ class NetworkManager: Manager
     
     func addCategoryToDatabase(category: Category)
     {
-        let userID:String? = AppDelegate.sharedManagers()?.userManager.getUserId()
+        let userID : String = (AppDelegate.sharedManagers()?.userManager.getUserId())!
         self.databaseRef.child("users/\(String(describing: userID))/Categories/\(String(describing: category.name))").setValue(category.desc)
     }
     
@@ -51,206 +50,9 @@ class NetworkManager: Manager
         }
     }
     
-    func setDataFromAccount(completionHandler: @escaping ([Category], [Task]) -> Void)
-    {
-        self.fetchCategoriesFromDatabase()
-        {error,categoryDictionary in
-            
-            //try out handlePotentialError Function Later
-            if let error = error
-            {
-                AppDelegate.sharedManagers()?.errorManager.handleError(error: error)
-                completionHandler([], [])
-                return
-            }
-            
-            self.loadCategoriesFromDictionary(categoryDictionary: categoryDictionary!)
-            {categoryList in
-                self.setTaskList(categoryList: categoryList, completionHandler: completionHandler)
-            }
-        }
-    }
-    
-    private func validateSnapshotWithCompletion(snapshot : DataSnapshot, completionHandler : @escaping (Error?, NSDictionary?) -> Void)
-    {
-        if let value = snapshot.value as? NSDictionary
-        {
-            completionHandler(nil, value)
-        }
-        else
-        {
-            completionHandler(FirebaseError.userDataFetchFailed, nil)
-        }
-    }
-    
-    private func fetchCategoriesFromDatabase(completionHandler: @escaping (Error?, NSDictionary?) -> Void)
-    {
-        let userID:String? = AppDelegate.sharedManagers()?.userManager.getUserId()
-        self.databaseRef.child("users/\(String(describing: userID))/Categories").observeSingleEvent(of: .value, with:
-        { snapshot in
-            self.validateSnapshotWithCompletion(snapshot: snapshot, completionHandler: completionHandler)
-        })
-    }
-    
-    private func loadCategoriesFromDictionary(categoryDictionary: NSDictionary, completionHandler: @escaping ([Category]) -> Void)
-    {
-        var categoryList: [Category] = []
-        for (catName,catDesc) in categoryDictionary
-        {
-            categoryList.append(Category(cName: catName as! String, cDesc: catDesc as! String))
-        }
-        completionHandler(categoryList)
-    }
-    
-    private func setTaskList(categoryList : [Category],completionHandler: @escaping ([Category],[Task]) -> Void)
-    {
-        self.fetchTaskListFromDatabase()
-        {error,taskDictionary in
-            
-            if let error = error
-            {
-                AppDelegate.sharedManagers()?.errorManager.handleError(error: error)
-                completionHandler([], [])
-            }
-            self.loadTaskListFromDictionary(taskDictionary: taskDictionary!, categoryList: categoryList)
-            {taskList in
-                completionHandler(categoryList,taskList)
-            }
-        }
-    }
-    
-    private func fetchTaskListFromDatabase(completionHandler: @escaping (Error?, NSDictionary?) -> Void)
-    {
-        let userID:String? = AppDelegate.sharedManagers()?.userManager.getUserId()
-        self.databaseRef.child("users/\(String(describing: userID))/Tasks").observeSingleEvent(of: .value, with:
-        { snapshot in
-            self.validateSnapshotWithCompletion(snapshot: snapshot, completionHandler: completionHandler)
-        })
-    }
-    
-    private func loadTaskListFromDictionary(taskDictionary: NSDictionary, categoryList: [Category],completionHandler: @escaping ([Task]) -> Void)
-    {
-        //Check This Later it might return asynchrounously before all tasks are done loading
-        var taskList : [Task] = []
-        for (taskName,taskObj) in taskDictionary
-        {
-            self.fetchTaskFromDatabase(taskObject: taskObj)
-            {error, taskDictionary in
-                if let error = error
-                {
-                    //Delete This Task Later But For Now Skip Over it
-                    print("Corrupt Task: " + error.localizedDescription)
-                }
-                else
-                {
-                    self.loadTask(taskName: taskName as! String, taskDictionary: taskDictionary!, categoryList: categoryList)
-                    {task in
-                        taskList.append(task)
-                    }
-                }
-            }
-            
-        }
-        completionHandler(taskList)
-    }
-    
-    private func fetchTaskFromDatabase(taskObject: Any,completionHandler: @escaping (Error?, NSDictionary?) -> Void)
-    {
-        if let value = taskObject as? NSDictionary
-        {
-            completionHandler(nil, value)
-        }
-        else
-        {
-            completionHandler(FirebaseError.userDataFetchFailed, nil)
-        }
-    }
-    
-    private func loadTask(taskName: String, taskDictionary: NSDictionary, categoryList: [Category], completionHandler: @escaping (Task) -> Void)
-    {
-        let userID: String? = AppDelegate.sharedManagers()?.userManager.getUserId()
-        let categoryString: String = taskDictionary["cat"] as? String ?? "TCategory"
-        let description : String = taskDictionary["desc"] as? String ?? "TDescription"
-        let longitude : Float? = taskDictionary["long"] as? Float? ?? nil
-        let latitude : Float? = taskDictionary["lat"] as? Float? ?? nil
-        let hasImage: Bool = taskDictionary["img"] as? Bool ?? false
-        let filePath = "\(String(describing: userID))/\(taskName)"
-        var img : UIImage? = nil
-          
-        
-        if(hasImage)
-        {
-            self.fetchImage(filePath: filePath)
-            {error, data in
-                if let error = error
-                {
-                    AppDelegate.sharedManagers()?.errorManager.handleError(error: error)
-                }
-                else
-                {
-                    img = self.loadImage(imgData: data!)
-                    self.makeTaskObjectFromData(taskName: taskName, categoryName: categoryString, description: description, longitude: longitude, latitude: latitude, img: img, categoryList: categoryList)
-                    {task in
-                        completionHandler(task)
-                    }
-                }
-            }
-        }
-        else
-        {
-            self.makeTaskObjectFromData(taskName: taskName, categoryName: categoryString, description: description, longitude: longitude, latitude: latitude, img: img, categoryList: categoryList)
-            {task in
-                completionHandler(task)
-            }
-        }
-        
-    }
-    
-    private func fetchImage(filePath: String, completionHandler: @escaping (Error?, Data?) -> Void)
-    {
-        //Setup Image Cache
-        
-        // Assuming a < 10MB file, though you can change that
-        self.storageRef.child(filePath).getData(maxSize: 10*1024*1024)
-        {data,error in
-            if let error = error
-            {
-                completionHandler(error, nil)
-            }
-            else
-            {
-                completionHandler(nil, data)
-            }
-        }
-    }
-    
-    private func loadImage(imgData: Data) -> UIImage?
-    {
-        return UIImage(data: imgData)
-    }
-    
-    private func makeTaskObjectFromData(taskName: String, categoryName: String, description: String, longitude: Float?, latitude: Float?, img: UIImage?, categoryList: [Category], completionHandler: @escaping (Task)-> Void)
-    {
-        let category: Category = self.findCategoryByName(name: categoryName, list: categoryList)
-        let task: Task = Task(cName: taskName, cDesc: description, c: category, cImg: img, cLong: longitude, cLat: latitude)
-        completionHandler(task)
-    }
-    
-    private func findCategoryByName(name: String, list: [Category]) -> Category
-    {
-        for category in list
-        {
-            if (category.name == name)
-            {
-                return category
-            }
-        }
-        return Category(cName: "Category", cDesc: "This is a Category")
-    }
-    
     func addTaskToDatabase(img : UIImage?, taskName: String, taskDescription : String ,categoryIndex : Int)
     {
-        let userID = AppDelegate.sharedManagers()?.userManager.getUserId()
+        let userID : String = (AppDelegate.sharedManagers()?.userManager.getUserId())!
         if let img = img
         {
             var data = NSData()
@@ -274,81 +76,146 @@ class NetworkManager: Manager
             self.databaseRef.child("users/\(String(describing: userID))/Tasks/\(taskName)/img").setValue(false)
         }
         
-        AppDelegate.sharedManagers()?.userManager.addTask(task: Task(cName: taskName, cDesc: taskDescription, c: AppDelegate.sharedManagers()?.userManager.getCategoryAt(index: categoryIndex) ?? Category(cName: "", cDesc: ""), cImg: img))
+        AppDelegate.sharedManagers()?.userManager.addTask(task: Task(cName: taskName, cDesc: taskDescription, c: AppDelegate.sharedManagers()?.userManager.getCategoryAt(index: categoryIndex) ?? Category(cName: "", cDesc: ""), hasImage: (img != nil)))
         self.databaseRef.child("users/\(String(describing: userID))/Tasks/\(taskName)/desc").setValue(taskDescription)
-        self.databaseRef.child("users/\(String(describing: userID))/Tasks/\(taskName)/cat").setValue(AppDelegate.sharedManagers()?.userManager.getCategoryAt(index: categoryIndex))
+        self.databaseRef.child("users/\(String(describing: userID))/Tasks/\(taskName)/cat").setValue(AppDelegate.sharedManagers()?.userManager.getCategoryAt(index: categoryIndex).name)
     }
     
     
-    
-    
-    
-    
-    
-    //Original Load Data Method That Worked
-    /*func setDataFromAccount2(completionHandler: @escaping () -> Void)
+    func loadCategories(completionHandler: @escaping () -> Void)
     {
-        let userID:String? = AppDelegate.sharedManagers()?.userManager.getUserId()
+        AppDelegate.sharedManagers()?.userManager.resetCategories();
+        self.fetchCategoriesFromFirebase()
+        {firebaseCategories in
+            self.convertFirebaseCategories(firebaseCategories: firebaseCategories)
+            {
+                completionHandler()
+            }
+        }
+    }
+    
+    private func fetchCategoriesFromFirebase(completionHandler: @escaping (NSDictionary) -> Void)
+    {
+        let userID : String = (AppDelegate.sharedManagers()?.userManager.getUserId())!
         self.databaseRef.child("users/\(String(describing: userID))/Categories").observeSingleEvent(of: .value, with:
         { snapshot in
-          // Get user value
-            if let value = snapshot.value as? NSDictionary
-            {
-                for (catName,catDesc) in value
-                {
-                    self.categoryList.append(Category(cName: catName as! String, cDesc: catDesc as! String))
-                }
-                self.databaseRef.child("users/\(String(describing: userID))/Tasks").observeSingleEvent(of: .value, with: { snapshot in
-                  // Get user value
-                    if let value = snapshot.value as? NSDictionary
-                    {
-                        for (taskName,taskObj) in value
-                        {
-                            if let taskDic = taskObj as? NSDictionary
-                            {
-                                let ct: String = taskDic["cat"] as? String ?? "TCategory"
-                                let desc : String = taskDic["desc"] as? String ?? "TDescription"
-                                let long : Float? = taskDic["long"] as? Float? ?? nil
-                                let lat : Float? = taskDic["lat"] as? Float? ?? nil
-                                let im: Bool = taskDic["img"] as? Bool ?? false
-                                let filePath = "\(String(describing: userID))/\(taskName as! String)"
-                                var img : UIImage? = nil
-                                  
-                                // Assuming a < 10MB file, though you can change that
-                                if(im)
-                                {
-                                    self.storageRef.child(filePath).getData(maxSize: 10*1024*1024, completion:
-                                    { (data, error) in
-                                                        
-                                        img = UIImage(data: data!)
-                                        var cate : Category? = nil
-                                        for ca in self.categoryList
-                                        {
-                                            if(ct == ca.name)
-                                            {
-                                                cate = ca
-                                                self.taskList.append(Task(cName: taskName as! String, cDesc: desc, c: cate!, cImg: img , cLong: long, cLat: lat))
-                                                break;
-                                            }
-                                        }
-                                    })
-                                    
-                                }
-                                
-                                
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                })
-            }
-            else
-            {
+            self.validateSnapshotWithCompletion(snapshot: snapshot)
+            {categoryDictionary in
                 
+                completionHandler(categoryDictionary)
             }
         })
-    }*/
+    }
+    
+    private func validateSnapshotWithCompletion(snapshot : DataSnapshot, completionHandler : @escaping (NSDictionary) -> Void)
+    {
+        if let value = snapshot.value as? NSDictionary
+        {
+            completionHandler(value)
+            return
+        }
+        completionHandler([:])
+    }
+    
+    private func convertFirebaseCategories(firebaseCategories: NSDictionary, completionHandler: @escaping () -> Void)
+    {
+        for (catName,catDesc) in firebaseCategories
+        {
+            if(canConvertToString(catName) && canConvertToString(catDesc))
+            {
+                let category : Category = Category(cName: catName as! String, cDesc: catDesc as! String)
+                AppDelegate.sharedManagers()?.userManager.addCategory(category: category)
+            }
+        }
+        completionHandler()
+    }
+    
+    private func canConvertToString(_ content : Any) -> Bool
+    {
+        return content is String
+    }
+    
+    func loadTasks(completionHandler: @escaping () -> Void)
+    {
+        
+        AppDelegate.sharedManagers()?.userManager.resetTasks()
+        self.fetchTasksFromFirebase()
+        {firebaseTasks in
+            self.convertFirebaseTasks(firebaseTasks: firebaseTasks)
+            {
+                completionHandler()
+            }
+        }
+        
+    }
+    
+    private func fetchTasksFromFirebase(completionHandler: @escaping (NSDictionary) -> Void)
+    {
+        let userID : String = (AppDelegate.sharedManagers()?.userManager.getUserId())!
+        self.databaseRef.child("users/\(String(describing: userID))/Tasks").observeSingleEvent(of: .value, with:
+        { snapshot in
+            self.validateSnapshotWithCompletion(snapshot: snapshot)
+            {taskDictionary in
+                completionHandler(taskDictionary)
+            }
+        })
+    }
+    
+    private func convertFirebaseTasks(firebaseTasks : NSDictionary, completionHandler: @escaping () -> Void)
+    {
+        for(taskName, taskObj) in firebaseTasks
+        {
+            self.validateTask(taskObject: taskObj)
+            {taskObject in
+                self.convertFirebaseTask(taskName: taskName as! String, taskObject: taskObject)
+            }
+        }
+        completionHandler()
+    }
+    
+    private func validateTask(taskObject: Any,completionHandler: @escaping (NSDictionary?) -> Void)
+    {
+        if let value = taskObject as? NSDictionary
+        {
+            completionHandler(value)
+            return
+        }
+        completionHandler(nil)
+    }
+    
+    private func convertFirebaseTask(taskName : Any, taskObject: NSDictionary?)
+    {
+        if let taskObject = taskObject, self.canConvertToString(taskName)
+        {
+            let taskName = taskName as! String
+            let categoryName: String = taskObject["cat"] as? String ?? "TCategory"
+            let description : String = taskObject["desc"] as? String ?? "TDescription"
+            let hasImage: Bool = taskObject["img"] as? Bool ?? false
+            if let category = AppDelegate.sharedManagers()?.userManager.findCategoryByName(name: categoryName)
+            {
+                AppDelegate.sharedManagers()?.userManager.addTask(task: Task(cName: taskName, cDesc: description, c: category, hasImage: hasImage))
+            }
+        }
+    }
+    
+    func obtainImage(taskName: String, completionHandler: @escaping (UIImage?) -> Void)
+    {
+        //add Image Cache Functionality
+        let userID : String = (AppDelegate.sharedManagers()?.userManager.getUserId())!
+        let filePath = "\(String(describing: userID))/\(taskName)"
+        
+        // Assuming a < 50MB file, though you can change that
+        self.storageRef.child(filePath).getData(maxSize: 50*1024*1024)
+        {data,error in
+            if let data = data, error == nil
+            {
+                completionHandler(UIImage(data: data))
+                return
+            }
+            completionHandler(nil)
+            return
+        }
+        completionHandler(nil)
+    }
     
 }

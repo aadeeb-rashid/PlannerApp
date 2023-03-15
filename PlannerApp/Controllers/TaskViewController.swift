@@ -13,9 +13,8 @@ class TaskViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad()
     {
-        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
+        self.prepViewController()
         super.viewDidLoad()
-        self.tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int

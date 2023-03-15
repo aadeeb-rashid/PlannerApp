@@ -14,7 +14,7 @@ class AddCatViewController: UIViewController {
     @IBOutlet weak var descText: UITextView!
     override func viewDidLoad()
     {
-        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
+        self.prepViewController()
         super.viewDidLoad()
     }
     

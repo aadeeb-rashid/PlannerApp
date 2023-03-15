@@ -52,6 +52,23 @@ class UserManager: Manager
         return self.categoryList[index]
     }
     
+    func findCategoryByName(name: String) -> Category?
+    {
+        for category in categoryList
+        {
+            if (category.name == name)
+            {
+                return category
+            }
+        }
+        return nil
+    }
+    
+    func resetCategories()
+    {
+        categoryList = []
+    }
+    
     func getTasks() -> [Task]
     {
         return taskList
@@ -60,6 +77,11 @@ class UserManager: Manager
     func addTask(task : Task)
     {
         taskList.append(task)
+    }
+    
+    func resetTasks()
+    {
+        taskList = []
     }
     
     func setAuthDelegate(delegate : AuthDelegate?)
@@ -100,12 +122,18 @@ class UserManager: Manager
     private func handleSucessfullAuthAttempt()
     {
         self.userID = Auth.auth().currentUser!.uid
-        AppDelegate.sharedManagers()?.networkManager.setDataFromAccount()
-        {categoryList,taskList in
-            
-            self.categoryList = categoryList
-            self.taskList = taskList
-            self.authDelegate?.segueToMain()
+        self.loadUserData()
+        
+    }
+    
+    private func loadUserData()
+    {
+        AppDelegate.sharedManagers()?.networkManager.loadCategories()
+        {
+            AppDelegate.sharedManagers()?.networkManager.loadTasks()
+            {
+                self.authDelegate?.segueToMain()
+            }
         }
     }
     

@@ -20,6 +20,25 @@ class ViewController: UIViewController
 
 extension UIViewController : PresentAlertDelegate
 {
+    func prepViewController()
+    {
+        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
+        self.hideKeyboardOnTap()
+    }
+    
+    func hideKeyboardOnTap()
+    {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard()
+    {
+        self.view.endEditing(true)
+    }
+    
+    
     
 }
 

@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, AuthDelegate
     
     override func viewDidLoad()
     {
-        AppDelegate.sharedManagers()?.errorManager.setDelegate(viewController: self)
+        self.prepViewController()
         AppDelegate.sharedManagers()?.userManager.setAuthDelegate(delegate: self)
         super.viewDidLoad()
     }

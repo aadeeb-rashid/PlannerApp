@@ -17,9 +17,12 @@ class ImageCache
         return ImageCache.cache[name]
     }
     
-    static func setImageForName(name: String, image: UIImage)
+    static func setImageForName(name: String, image: UIImage?)
     {
-        ImageCache.cache[name] = image
+        if let image = image
+        {
+            ImageCache.cache[name] = image
+        }
     }
     
 }

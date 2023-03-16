@@ -213,7 +213,9 @@ class NetworkManager: Manager
         {data,error in
             if let data = data, error == nil
             {
-                completionHandler(UIImage(data: data))
+                let image = UIImage(data: data)
+                completionHandler(image)
+                ImageCache.setImageForName(name: taskName, image: image)
                 return
             }
             completionHandler(nil)

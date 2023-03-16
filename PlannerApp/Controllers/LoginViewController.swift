@@ -20,6 +20,10 @@ class LoginViewController: UIViewController, AuthDelegate
         super.viewDidLoad()
     }
 
+    @IBAction func forgotPasswordAttempt(_ sender: UIButton)
+    {
+        AppDelegate.sharedManagers()?.errorManager.handleForgottenPassword()
+    }
     @IBAction func loginAttempt(_ sender: UIButton)
     {
         AppDelegate.sharedManagers()?.userManager.loginUserWithAuth(email: emailText.text ?? "", password: passwordText.text ?? "")

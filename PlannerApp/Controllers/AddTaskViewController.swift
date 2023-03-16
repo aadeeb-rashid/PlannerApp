@@ -70,7 +70,7 @@ class AddTaskViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     {
         if(segue.identifier == "taskUnwind")
         {
-            AppDelegate.sharedManagers()?.networkManager.addTaskToDatabase(img: img, taskName: nameText.text ?? "", taskDescription: descText.text ?? "", categoryIndex: picker.selectedRow(inComponent: 0))
+            AppDelegate.sharedManagers()?.userManager.addNewTask(img: img, taskName: nameText.text ?? "", taskDescription: descText.text ?? "", categoryIndex: picker.selectedRow(inComponent: 0))
         }
     }
     

@@ -75,8 +75,6 @@ class NetworkManager: Manager
         {
             self.databaseRef.child("users/\(String(describing: userID))/Tasks/\(taskName)/img").setValue(false)
         }
-        
-        AppDelegate.sharedManagers()?.userManager.addTask(task: Task(cName: taskName, cDesc: taskDescription, c: AppDelegate.sharedManagers()?.userManager.getCategoryAt(index: categoryIndex) ?? Category(cName: "", cDesc: ""), hasImage: (img != nil)))
         self.databaseRef.child("users/\(String(describing: userID))/Tasks/\(taskName)/desc").setValue(taskDescription)
         self.databaseRef.child("users/\(String(describing: userID))/Tasks/\(taskName)/cat").setValue(AppDelegate.sharedManagers()?.userManager.getCategoryAt(index: categoryIndex).name)
     }
@@ -200,7 +198,13 @@ class NetworkManager: Manager
     
     func obtainImage(taskName: String, completionHandler: @escaping (UIImage?) -> Void)
     {
-        //add Image Cache Functionality
+        let image : UIImage? = ImageCache.getImageForName(name: taskName)
+        if(image != nil)
+        {
+            completionHandler(image)
+            return
+        }
+        
         let userID : String = (AppDelegate.sharedManagers()?.userManager.getUserId())!
         let filePath = "\(String(describing: userID))/\(taskName)"
         
@@ -217,5 +221,12 @@ class NetworkManager: Manager
         }
         completionHandler(nil)
     }
+    
+    func sendForgottenPasswordEmail(emailAddress: String)
+    {
+        Auth.auth().sendPasswordReset(withEmail: emailAddress, completion: AppDelegate.sharedManagers()?.errorManager.handlePotentialError(_:))
+    }
+    
+    
     
 }

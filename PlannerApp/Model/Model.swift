@@ -44,8 +44,6 @@ class Task
         
     }
     
-    
-    
     private func setImage(image: UIImage?)
     {
         self.img = image

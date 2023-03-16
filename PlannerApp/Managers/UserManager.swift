@@ -79,6 +79,13 @@ class UserManager: Manager
         taskList.append(task)
     }
     
+    func addNewTask(img : UIImage?, taskName: String, taskDescription : String ,categoryIndex : Int)
+    {
+        let newTask : Task = Task(cName: taskName, cDesc: taskDescription, c: self.getCategoryAt(index: categoryIndex), hasImage: img != nil, img: img)
+        taskList.append(newTask)
+        AppDelegate.sharedManagers()?.networkManager.addTaskToDatabase(img: img, taskName: taskName, taskDescription: taskDescription, categoryIndex: categoryIndex)
+    }
+    
     func resetTasks()
     {
         taskList = []
@@ -119,11 +126,15 @@ class UserManager: Manager
         }
     }
     
+    private func handleFailedAuthAttempt(error: Error)
+    {
+        AppDelegate.sharedManagers()?.errorManager.handleError(error: error)
+    }
+    
     private func handleSucessfullAuthAttempt()
     {
         self.userID = Auth.auth().currentUser!.uid
         self.loadUserData()
-        
     }
     
     private func loadUserData()
@@ -137,10 +148,6 @@ class UserManager: Manager
         }
     }
     
-    private func handleFailedAuthAttempt(error: Error)
-    {
-        AppDelegate.sharedManagers()?.errorManager.handleError(error: error)
-    }
     
     
     

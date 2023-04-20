@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C1C10AE64DBA83B880569C2 /* Pods_PlannerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD0BFCFFB53EE47B91FD1E92 /* Pods_PlannerApp.framework */; };
 		5B239A182814D071007DD468 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B239A172814D070007DD468 /* Model.swift */; };
+		5B41001229E7C4D8006328AC /* Play-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B41001029E7C4D8006328AC /* Play-Regular.ttf */; };
+		5B41001329E7C4D8006328AC /* Play-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B41001129E7C4D8006328AC /* Play-Bold.ttf */; };
 		5B5175F328FE66FB00269828 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5175F228FE66FB00269828 /* NetworkManager.swift */; };
 		5B5175F528FE71AD00269828 /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5175F428FE71AD00269828 /* CustomErrors.swift */; };
 		5B62E28F29C2A632002147FA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62E28E29C2A632002147FA /* ImageCache.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		43313A980D76E3376F6C5885 /* Pods-PlannerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannerApp.release.xcconfig"; path = "Target Support Files/Pods-PlannerApp/Pods-PlannerApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B239A172814D070007DD468 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		5B41001029E7C4D8006328AC /* Play-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Play-Regular.ttf"; sourceTree = "<group>"; };
+		5B41001129E7C4D8006328AC /* Play-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Play-Bold.ttf"; sourceTree = "<group>"; };
 		5B5175F228FE66FB00269828 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5B5175F428FE71AD00269828 /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
 		5B62E28E29C2A632002147FA /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -72,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B41000B29E7C2C7006328AC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5B41001129E7C4D8006328AC /* Play-Bold.ttf */,
+				5B41001029E7C4D8006328AC /* Play-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		5B84B8162813605000CA53CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +144,7 @@
 				5B84B8172813605E00CA53CB /* Controllers */,
 				5BEF823C28D2F6A600510FA9 /* Managers */,
 				5B84B8162813605000CA53CB /* Model */,
+				5B41000B29E7C2C7006328AC /* Fonts */,
 				5BF0063427E845FF00F35909 /* AppDelegate.swift */,
 				5BF0063627E845FF00F35909 /* SceneDelegate.swift */,
 				5BF0063A27E845FF00F35909 /* Main.storyboard */,
@@ -221,9 +235,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF0064427E845FF00F35909 /* LaunchScreen.storyboard in Resources */,
+				5B41001329E7C4D8006328AC /* Play-Bold.ttf in Resources */,
 				5B9B7D0929B6CBE9007E50E2 /* GoogleService-Info.plist in Resources */,
 				5BF0064127E845FF00F35909 /* Assets.xcassets in Resources */,
 				5BF0063C27E845FF00F35909 /* Main.storyboard in Resources */,
+				5B41001229E7C4D8006328AC /* Play-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

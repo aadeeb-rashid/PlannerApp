@@ -214,14 +214,15 @@ class NetworkManager: Manager
             if let data = data, error == nil
             {
                 let image = UIImage(data: data)
-                completionHandler(image)
                 ImageCache.setImageForName(name: taskName, image: image)
+                completionHandler(image)
                 return
             }
             completionHandler(nil)
             return
         }
         completionHandler(nil)
+        return
     }
     
     func sendForgottenPasswordEmail(emailAddress: String)

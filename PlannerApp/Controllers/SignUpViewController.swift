@@ -12,7 +12,7 @@ class SignUpViewController: UIViewController, AuthDelegate
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
-    var success: Bool = false
+    @IBOutlet weak var confirmPasswordText : UITextField!
     override func viewDidLoad()
     {
         self.prepViewController()
@@ -22,7 +22,20 @@ class SignUpViewController: UIViewController, AuthDelegate
     
     @IBAction func signUpAttempt(_ sender: UIButton)
     {
-        AppDelegate.sharedManagers()?.userManager.signUpUserWithAuth(email: emailText.text ?? "", password: passwordText.text ?? "")
+        if(passwordsDoMatch(passwordText.text ?? "", confirmPasswordText.text ?? ""))
+        {
+            AppDelegate.sharedManagers()?.userManager.signUpUserWithAuth(email: emailText.text ?? "", password: passwordText.text ?? "")
+        }
+        else
+        {
+            AppDelegate.sharedManagers()?.errorManager.handleError(error: CreateError.PasswordsDontMatch)
+        }
+        
+    }
+    
+    private func passwordsDoMatch(_ password1 : String, _ password2 : String) -> Bool
+    {
+        return password1 == password2
     }
     
     

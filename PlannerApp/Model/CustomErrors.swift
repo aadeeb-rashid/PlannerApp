@@ -34,6 +34,7 @@ enum FirebaseError: LocalizedError
 enum CreateError : LocalizedError
 {
     case FillOutAllFields
+    case PasswordsDontMatch
     case NoCategory
     
     public var errorDescription: String?
@@ -43,8 +44,13 @@ enum CreateError : LocalizedError
             case .FillOutAllFields:
                 return NSLocalizedString("Please fill out all fields", comment: "Fields Error")
             
+            case .PasswordsDontMatch:
+                return NSLocalizedString("Passwords do not match", comment: "Password Match Error")
+            
             case .NoCategory:
-                return NSLocalizedString("Please add a Category", comment: "Fields Error")
+                return NSLocalizedString("Please add a Category", comment: "Category Error")
+            
+            
         }
     }
 }
